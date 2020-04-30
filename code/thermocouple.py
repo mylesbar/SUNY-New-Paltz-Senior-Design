@@ -6,48 +6,51 @@
 #Import Libraries
 import time
 import os
-import Rpi.GPIO as GPIO
-import adafruit_max31855 as maxBoard
+import adafruit_max31856 as maxBoard
 import busio
 import board
-
 import spidev
+import digitalio
+import RPi.GPIO as GPIO
+#Global Variables
+#-------------------------------------------------------
+#Chip Select Pins
 
-#Globals & GPIO Pins
+SPI_EN_J = digitalio.DigitalInOut(board.D0) #Pin BCM0/Pin ID_SD on GPIO Extenstion Board
 
-SPI_MOSI  = 9
-SPI_MISO = 21
-SPI_CLK = 23
+SPI_EN_K =  digitalio.DigitalInOut(board.D5) #Pin BCM5/GPIO Extension Board
 
-SPI_EN_J = 24
-SPI_EN_K = 26
+#Initialize SPI
 
-#Initialize GPIO
+#SCLK = BCM11 MOSI=BCM10 MISO = BCM9
+spi = busio.SPI(board.SCLK, board.MOSI, board.MISO) 
 
-GPIO.setmode(GPIO.BCM)
-
-#Initialize SPI & Max31855 Board
-
-spi = busio.SPI(SPI_CLK, SPI_MOSI, SPI_MISO)
-
-Probe_J = maxBoard.MAX31855(spi,SPI_EN_J) #Type J thermocouple --> outer block
-Probe_K = maxBoard.MAX31855(spi,SPI_EN_K) #Type K thermocouple --> inner block
+#Thermocouple Initialization via MMAX31856 Board
+Probe_J = maxBoard.MAX31856(spi,SPI_EN_J) #Type J thermocouple --> outer block
+Probe_K = maxBoard.MAX31856(spi,SPI_EN_K) #Type K thermocouple --> inner block
 
 #Temperature Reading. Temperatures are recorded in Celsius by default
-
+#------------------------------------------------------------------------
+#Temperature Initialization
 Temp_J = 0
 Temp_K = 0
+i = 0
 
 try:
 	while True:
-		Temp_J = Probe_J.temperature
-		Temp_K = Probe_K.temperature
+		#Temperatures are converted into Farenheit
+		Temp_J = Probe_J.temperature * (9/5) + 32
+		time.sleep(0.25)
+		Temp_K = Probe_K.temperature * (9/5) + 32
 
-		print ('Temperature of Type J Thermocouple:', Temp_J, 'C')
-		print ('Temperature of Type K Thermocouple:', Temp_K, 'C')
+		print('cycle',i)
+		print ('Temperature of Type J Thermocouple:', Temp_J, 'F')
+		print ('Temperature of Type K Thermocouple:', Temp_K, 'F')
 		time.sleep(0.5)
+		i+=1
 
 except KeyboardInterrupt:
+	print()
 	print('Program Terminated')
 	GPIO.cleanup()
 
