@@ -63,9 +63,11 @@ def main():
          while True:
                   ad_value = readadc(AO_pin, SPICLK, SPIMOSI, SPIMISO, SPICS)
                   voltage= ad_value*(3.3/1024)*5
+                  pressure = ( ( (voltage - 0.13)*(2000-0) ) / (16.5-0.13)  ) + 0.13
                   print("***********")
                   print('cycle',i)
                   print( " Voltage is: " + str("%.2f"%voltage)+"V")
+                  print( "Calculated Pressure is: " + str("%.2f"%pressure) + "psi")
                   print("***********")
                   print(' ')
                   time.sleep(0.5)

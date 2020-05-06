@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-AO_pin = 1 #flame sensor AO connected to ADC chanannel 0
+AO_pin = 0 #flame sensor AO connected to ADC chanannel 0
 # change these as desired - they're the pins connected from the
 # SPI port on the ADC to the Cobbler
 SPICLK = 11

@@ -66,15 +66,9 @@ def writeTemp(csv_write):
 	print('write successful')
 try:
 
-	con = sql.connect('..tempLog.db') #connect to database
-	cur = con.cursor()		  #set cursor
-	cur.exectute('''
-	CREATE TABLE IF NOT EXISTS "tempLog" (
-	"timestamp" TEXT,
-	"temp_J" TEXT,
-	"temp_K" TEXT
-		)
-	''')
+#	con = sql.connect('..tempLog.db') #connect to database
+#	cur = con.cursor()		  #set cursor
+#	cur.exectute('''	CREATE TABLE IF NOT EXISTS "tempLog" (	"timestamp" TEXT,	"temp_J" TEXT,	"temp_K" TEXT		)	''')
 
 	with open("tempLog.csv","w") as log:
 		writer = csv.writer(log)
