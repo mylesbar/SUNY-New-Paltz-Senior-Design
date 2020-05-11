@@ -168,22 +168,25 @@ def main():
 				time.sleep(1)
 				k+=1
 	except KeyboardInterrupt:
+		with open("dataLog.csv","a") as postLog:
+			writer2 = csv.writer(postLog)
+			writer2.writerow(['Pressure P_test_1 ', P_Test_1])
+			writer2.writerow(['Pressure P_test_2 ', P_Test_2])
+			writer2.writerow(['wall shear sterss ', wall_shear_stress])
+			writer2.writerow(['Y_apparent shear strain ', Y_apparent])
+			writer2.writerow(['calculated viscosity ', viscosity_measured])
 		read_file = pd.read_csv(r'dataLog.csv',error_bad_lines=False)
 		read_file.to_excel(r'tempLog.xlsx',index = None, header=True)
 		pass
 		GPIO.cleanup()
 		print('Program Terminated')
+		quit()
 
 if __name__ == '__main__':
 	try:
 		main()
 	except KeyboardInterrupt:
 		print()
-		writer.writerow(['Pressure P_test_1 ', P_Test_1])
-		writer.writerow(['Pressure P_test_2 ', P_Test_2])
-		writer.writerow(['wall shear sterss ', wall_shear_stress])
-		writer.writerow(['Y_apparent shear strain ', Y_apparent])
-		writer.writerow(['calculated viscosity ', viscosity_measured])
 		read_file = pd.read_csv(r'tempLog.csv')
 		read_file.to_excel(r'tempLog.xlsx',index = None, header=True)
 		print('Program Terminated')
