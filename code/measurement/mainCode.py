@@ -134,11 +134,11 @@ def main():
 	 	''')
 		with open("dataLog.csv","w") as log:
 			writer = csv.writer(log)
-			writer.writerow(['Pressure P_test_1 ', P_Test_1])
-			writer.writerow(['Pressure P_test_2 ', P_Test_2])
-			writer.writerow(['wall shear sterss ', wall_shear_stress])
-			writer.writerow(['Y_apparent shear strain ', Y_apparent])
-			writer.writerow(['calculated viscosity ', viscosity_measured])
+#			writer.writerow(['Pressure P_test_1 ', P_Test_1])
+#			writer.writerow(['Pressure P_test_2 ', P_Test_2])
+#			writer.writerow(['wall shear sterss ', wall_shear_stress])
+#			writer.writerow(['Y_apparent shear strain ', Y_apparent])
+#			writer.writerow(['calculated viscosity ', viscosity_measured])
 			writer.writerow(['Tpye J	','Type K','	Time Recorded	'])
 			while True:
 
@@ -170,7 +170,7 @@ def main():
 	except KeyboardInterrupt:
 #		read_file = pd.read_csv(r'dataLog.csv',error_bad_lines=False)
 #		read_file.to_excel(r'tempLog.xlsx',index = None, header=True)
-#
+		pass
 		GPIO.cleanup()
 		print('Program Terminated')
 
@@ -179,6 +179,11 @@ if __name__ == '__main__':
 		main()
 	except KeyboardInterrupt:
 		print()
+		writer.writerow(['Pressure P_test_1 ', P_Test_1])
+		writer.writerow(['Pressure P_test_2 ', P_Test_2])
+		writer.writerow(['wall shear sterss ', wall_shear_stress])
+		writer.writerow(['Y_apparent shear strain ', Y_apparent])
+		writer.writerow(['calculated viscosity ', viscosity_measured])
 		read_file = pd.read_csv(r'tempLog.csv')
 		read_file.to_excel(r'tempLog.xlsx',index = None, header=True)
 		print('Program Terminated')
