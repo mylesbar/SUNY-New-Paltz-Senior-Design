@@ -15,6 +15,7 @@ import RPi.GPIO as GPIO
 import sqlite3 as sql
 import sys
 import csv
+import pandas as pd
 
 #Global Variables
 #-------------------------------------------------------
@@ -82,6 +83,8 @@ try:
 			i+=1
 
 except KeyboardInterrupt:
+	read_file = pd.read_csv(r'tempLog.csv')
+	read_file.to_excel(r'tempLog.xlsx',index = None, header=True)
 	print()
 	print('Program Terminated')
 	GPIO.cleanup()

@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-AO_pin = 0 #flame sensor AO connected to ADC chanannel 0
+AO_pin = 1 #flame sensor AO connected to ADC chanannel 0
 # change these as desired - they're the pins connected from the
 # SPI port on the ADC to the Cobbler
 SPICLK = 11
@@ -55,28 +55,29 @@ def readadc(adcnum, clockpin, mosipin, misopin, cspin):
         adcout >>= 1       # first bit is 'null' so drop it
         return adcout
 
-def main():
+def mainRead():
          init()
-         i = 0
-         time.sleep(2)
-         print("will detect voltage")
-         while True:
-                  ad_value = readadc(AO_pin, SPICLK, SPIMOSI, SPIMISO, SPICS)
-                  voltage= ad_value*(3.3/1024)*5
-                  print("***********")
-                  print('cycle',i)
-                  print( " Voltage is: " + str("%.2f"%voltage)+"V")
-                  print("***********")
-                  print(' ')
-                  time.sleep(0.5)
-                  i+=1
+#         i = 0
+#         time.sleep(2)
+#         print("will detect voltage")
+#         while True:
+         ad_value = readadc(AO_pin, SPICLK, SPIMOSI, SPIMISO, SPICS)
+         voltage= ad_value*(3.3/1024)*5
+#         print("***********")
+#         print('cycle',i)
+         print("Voltage is: " + str("%.2f"%voltage)+"V")
+#         print("***********")
+#         print(' ')
+#         time.sleep(0.5)
+#         i+=1
+         return voltage
                   
                            
         
 
 if __name__ =='__main__':
          try:
-                  main()
+                  mainRead()
          except KeyboardInterrupt:
                   pass
 GPIO.cleanup() 

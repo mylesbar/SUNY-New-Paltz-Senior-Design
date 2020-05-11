@@ -10,6 +10,14 @@ SPIMOSI = 10
 SPICS = 8
 #i = 0
 #port init
+
+min_voltage = 2.11
+max_voltage = 5.0
+
+min_pressure = 0
+max_pressure = 
+
+
 def init():
           GPIO.setwarnings(False)
           GPIO.setmode(GPIO.BCM)
