@@ -1,10 +1,9 @@
 # Senior Design 2020
 ![small](https://www.newpaltz.edu/media/identity/logos/newpaltzlogo.jpg)
 
-This repository documents my code for EGC309 Senior Design 2
+This repository documents the code for the EGG409 Senior Design 2 Engineering Capstone Project: Viscosity Controlled Wax Injection in partnership with MPI Systems Inc.
 
-1. Personal Information:
-        Name: Myles Barcelo
+      Name: Myles Barcelo
       
       Major: Computer Engineering & Computer Science     
        
