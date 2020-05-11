@@ -5,9 +5,7 @@
   <img src="https://www.mpi-systems.com/wp-content/uploads/2017/03/mpi-logo-615.png">
 </p>
 
-This repository documents the code for the EGG409 Senior Design 2 Engineering Capstone Project: 
-
-Viscosity Controlled Wax Injection in partnership with MPI Systems Inc.
+This repository documents the code for the EGG409 Senior Design 2 Engineering Capstone Project: \nViscosity Controlled Wax Injection in partnership with MPI Systems Inc.
 
       Team: 
             Myles Barcelo           (Computer Engineering & Computer Science)
