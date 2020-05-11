@@ -168,8 +168,8 @@ def main():
 				time.sleep(1)
 				k+=1
 	except KeyboardInterrupt:
-#		read_file = pd.read_csv(r'dataLog.csv',error_bad_lines=False)
-#		read_file.to_excel(r'tempLog.xlsx',index = None, header=True)
+		read_file = pd.read_csv(r'dataLog.csv',error_bad_lines=False)
+		read_file.to_excel(r'tempLog.xlsx',index = None, header=True)
 		pass
 		GPIO.cleanup()
 		print('Program Terminated')
